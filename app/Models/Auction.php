@@ -4,14 +4,14 @@ namespace App\Model\Setup;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Auction extends Model
 {
-    protected $table = "categories";
+    protected $table = "auctions";
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'last_modified_at';
 
-    const table = 'categories';
+    const table = 'auctions';
 
     protected $casts = [
         'id' => 'string',
@@ -20,7 +20,7 @@ class Category extends Model
     public $keyType = 'string';
 
     protected $fillable = [
-        'id', 'name', 'enabled','created_by', 'last_modified_by'
+        'id', 'name', 'description', 'start_date', 'end_date', 'created_by', 'last_modified_by'
     ];
 
     protected $dates = [
