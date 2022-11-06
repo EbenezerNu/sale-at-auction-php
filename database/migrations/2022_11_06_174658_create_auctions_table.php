@@ -18,10 +18,10 @@ class CreateAuctionsTable extends Migration
             $table->string('name');
             $table->uuid('category_id');
             $table->string('description');
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->string('created_by');
-            $table->timestamps('created_at');
+            $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });

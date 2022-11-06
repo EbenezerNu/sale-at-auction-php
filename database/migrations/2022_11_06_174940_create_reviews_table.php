@@ -14,7 +14,7 @@ class CreateReviewsTable extends Migration
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->uuid('product_id');
             $table->string('title');
             $table->longText('description');
@@ -23,6 +23,11 @@ class CreateReviewsTable extends Migration
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
+
+        // Schema::table('reviews', function($table) {
+        //     $table->engine = 'InnoDB';
+        //     $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+        // });
     }
 
     /**
