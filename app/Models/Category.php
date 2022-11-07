@@ -14,32 +14,27 @@ class Category extends Model
     const table = 'categories';
 
     protected $casts = [
-        'id' => 'string',
+        'id' => 'string'
     ];
 
     public $keyType = 'string';
 
     protected $fillable = [
-        'id', 'name', 'enabled','created_by', 'last_modified_by'
+        'id', 'name', 'description','created_by'
     ];
 
     protected $dates = [
-        'created_at',
-        'last_modified_at'
+        'created_at'
     ];
 
     protected $hidden = [
         'created_at',
-        'created_by',
-        'last_modified_at',
-        'last_modified_by'
+        'created_by'
     ];
 
     protected $appends = [
         'createdAt',
-        'createdBy',
-        'lastModifiedAt',
-        'lastModifiedBy',
+        'createdBy'
     ];
 
     public function getCreatedAtAttribute()
@@ -50,16 +45,6 @@ class Category extends Model
     public function getCreatedByAttribute()
     {
         return $this->attributes['created_by'];
-    }
-
-    public function getLastModifiedAtAttribute()
-    {
-        return $this->asDateTime($this->attributes['last_modified_at']);
-    }
-
-    public function getLastModifiedByAttribute()
-    {
-        return $this->attributes['last_modified_by'];
     }
 
 }

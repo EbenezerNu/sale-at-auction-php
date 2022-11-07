@@ -16,14 +16,14 @@ class CreateAuctionsTable extends Migration
         Schema::create('auctions', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->uuid('category_id');
-            $table->string('description');
+            $table->uuid('product_id');
+            $table->longText('description');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('created_by');
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

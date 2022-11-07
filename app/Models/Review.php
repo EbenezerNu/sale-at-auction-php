@@ -4,23 +4,23 @@ namespace App\Model\Setup;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Auction extends Model
+class Product extends Model
 {
-    protected $table = "auctions";
+    protected $table = "reviews";
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'last_modified_at';
 
-    const table = 'auctions';
+    const table = 'reviews';
 
     protected $casts = [
-        'id' => 'string',
+        'id' => 'string'
     ];
 
     public $keyType = 'string';
 
     protected $fillable = [
-        'id', 'name', 'description', 'product_id', 'start_date', 'end_date', 'created_by'
+        'id', 'title', 'product_id', 'created_by'
     ];
 
     protected $dates = [
