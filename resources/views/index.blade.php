@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>ibuy Auctions</title>
-		<link rel="stylesheet" href="ibuy.css" />
+		<link rel="stylesheet" href="{{asset('public/assets/ibuy.css')}}" />
 	</head>
 
 	<body>
@@ -27,7 +27,7 @@
 				<li><a class="categoryLink" href="#">More</a></li>
 			</ul>
 		</nav>
-		<img src="banners/1.jpg" alt="Banner" />
+		<img src="{{asset('public/assets/banners/1.jpg')}}" alt="Banner" />
 
 		<main>
 
@@ -35,7 +35,7 @@
 
 			<ul class="productList">
 				<li>
-					<img src="product.png" alt="product name">
+					<img src="{{asset('public/assets/product.png')}}" alt="product name">
 					<article>
 						<h2>Product name</h2>
 						<h3>Product category</h3>
@@ -46,7 +46,7 @@
 					</article>
 				</li>
 				<li>
-					<img src="product.png" alt="product name">
+					<img src="{{asset('public/assets/product.png')}}" alt="product name">
 					<article>
 						<h2>Product name</h2>
 						<h3>Product category</h3>
@@ -57,7 +57,7 @@
 					</article>
 				</li>
 				<li>
-					<img src="product.png" alt="product name">
+					<img src="{{asset('public/assets/product.png')}}" alt="product name">
 					<article>
 						<h2>Product name</h2>
 						<h3>Product category</h3>
@@ -74,7 +74,7 @@
 			<h1>Product Page</h1>
 			<article class="product">
 
-					<img src="product.png" alt="product name">
+					<img src="{{asset('public/assets/product.png')}}" alt="product name">
 					<section class="details">
 						<h2>Product name</h2>
 						<h3>Product category</h3>
