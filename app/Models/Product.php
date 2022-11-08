@@ -1,6 +1,5 @@
 <?php
-
-namespace App\Model\Setup;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,7 +23,7 @@ class Product extends Model
     ];
 
     protected $dates = [
-        'start_date', 
+        'start_date',
         'end_date',
         'created_at'
     ];

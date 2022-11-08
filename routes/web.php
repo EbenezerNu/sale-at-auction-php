@@ -18,4 +18,21 @@ Route::get('/', function () {return redirect()->route('login');});
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    //routes for notebooks
+    Route::get('/add-category', [Controllers\CategoriesController::class, 'showCategoryForm'])->name('category.add');
+
+    Route::post('/category', [Controllers\CategoriesController::class, 'saveCategory'])->name('category.save');
+
+    Route::get('/products', [Controllers\ProductsController::class, 'showProducts'])->name('products');
+
+    Route::get('/auctions', [Controllers\AuctionsController::class, 'showAuctions'])->name('auctions');
+
+    Route::post('/save-review', [Controllers\ReviewsController::class, 'saveReview'])->name('reviews.save');
+
+
+});
+
+
