@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
 
     /* ROUTES FOR PRODUCTS*/
 
-    Route::get('/manage-products', [App\Http\Controllers\ProductsController::class, 'manageProducts'])->name('products.manage');
+    Route::get('/manage-products', [App\Http\Controllers\ProductsController::class, 'manageProducts'])->name('product.manage');
 
     Route::post('/add-product', [App\Http\Controllers\ProductsController::class, 'addProduct'])->name('product.save');
 
@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
     /* ROUTES FOR AUCTIONS*/
 
-    Route::get('/manage-auctions', [App\Http\Controllers\AuctionsController::class, 'manageAuctions'])->name('auctions.manage');
+    Route::get('/manage-auctions', [App\Http\Controllers\AuctionsController::class, 'manageAuctions'])->name('auction.manage');
 
     Route::get('/get-category/{id}', [App\Http\Controllers\CategoriesController::class, 'getCategory'])->name('category.get');
 

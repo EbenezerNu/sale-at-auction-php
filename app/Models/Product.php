@@ -23,8 +23,7 @@ class Product extends Model
     ];
 
     protected $dates = [
-        'start_date',
-        'end_date',
+        'updated_at',
         'created_at'
     ];
 

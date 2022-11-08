@@ -245,13 +245,13 @@ main form input[type=submit] {
     width: 80%;
 }
 
-.category-list {
+.category-list, .product-list {
     display: flex !important;
     flex-flow: row;
     justify-items: center;
 }
 
-.category-list > *{
+.category-list > *, .product-list > *{
     margin-right: 0.3rem;
 }
 
@@ -260,4 +260,20 @@ main form input[type=submit] {
     text-align: center;
 }
 
+.product-price{
+    width: 10%;
+}
+
+.product-name{
+    width: 50%;
+}
+
+.product-category-name{
+    width: 20%;
+}
+
+.select-btn{
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
 

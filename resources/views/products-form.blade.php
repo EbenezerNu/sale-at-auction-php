@@ -22,6 +22,18 @@
                     <input type="text" name="new_product_name" class="form-control" value="{{$product->name}}">
                 </div>
                 <div class="row-align">
+                    <label for="new_product_price">Price</label>
+                    <input type="text" name="new_product_price" class="form-control" value="{{$product->name}}">
+                </div>
+                <div class="row-align">
+                    <label for="new_product_category">Category</label>
+                    <select name="new_product_category" class="form-control select-btn">
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}" @if($product->category->id == $category->id) selected @endif>{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="row-align">
                     <label for="new_product_description">Description</label>
                     <input type="text" name="new_product_description" class="form-control" value="{{$product->description}}">
                 </div>

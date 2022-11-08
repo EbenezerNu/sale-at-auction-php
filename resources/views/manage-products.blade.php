@@ -21,6 +21,18 @@
                         <input type="text" name="new_product_name" class="form-control">
                     </div>
                     <div class="row-align">
+                        <label for="new_product_price">Price</label>
+                        <input type="text" name="new_product_price" class="form-control">
+                    </div>
+                    <div class="row-align">
+                        <label for="new_product_category">Category</label>
+                        <select name="new_product_category" class="form-control select-btn">
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="row-align">
                         <label for="new_product_description">Description</label>
                         <input type="text" name="new_product_description" class="form-control">
                     </div>
@@ -40,6 +52,8 @@
                     <hr />
                     <li class="row product-list">
                         <input value="{{$product->name}}" type="text" disabled class="form-control product-name">
+                        <input value="{{$product->category->name}}" type="text" disabled class="form-control product-category-name">
+                        <input value="{{$product->price}}" type="text" disabled class="form-control product-price">
                         <button class="btn edit-btn form-control"><a class="productLink" href="{{route('product.edit.form', $product->id)}}">Edit</a></button>
                         <form action="{{route('product.delete', $product->id)}}"method="POST" class="delete-btn-form">
                             {{ csrf_field() }}
