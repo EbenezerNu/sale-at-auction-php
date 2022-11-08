@@ -51,10 +51,10 @@
 
 			<ul class="productList">
                 @foreach(  $categories as $category)
-                    <li class="row">
-                        <input value="{{$category->name}}" type="text" disabled class="form-control">
+                    <li class="row category-list">
+                        <input value="{{$category->name}}" type="text" disabled class="form-control category-name">
                         <button class="btn edit-btn form-control"><a class="categoryLink" href="{{route('category.edit', $category->id)}}">Edit</a></button>
-                        <form action="{{route('category.delete', $category->id)}}"method="POST">
+                        <form action="{{route('category.delete', $category->id)}}"method="POST" class="delete-btn-form">
                             {{ csrf_field() }}
                             {{ method_field('DELETE')}}
                             <button type="submit" class="btn delete-btn form-control">Delete</button>

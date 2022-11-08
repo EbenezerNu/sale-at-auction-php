@@ -192,7 +192,6 @@ main form input[type=submit] {
 	padding: 0.2em;
 	cursor: pointer;
 	border: 0;
-
 }
 
 .row-align{
@@ -206,3 +205,46 @@ main form input[type=submit] {
     flex-flow: row;
     justify-content: space-around;
 }
+
+.add-btn{
+    background-color: #3ea4db;
+    color: white;
+    width: 6rem;
+    font-weight: bold;
+}
+
+.edit-btn{
+    background-color: #a4c128;
+    font-weight: bold;
+    color: white;
+    width: 6rem;
+}
+
+.edit-btn > a{
+    color: white;
+    text-decoration: none;
+}
+
+.delete-btn{
+    background-color: #ec2222;
+    font-weight: bold;
+    color: white;
+    width: 6rem;
+}
+
+.category-name{
+    width: auto;
+}
+
+.category-list {
+    display: flex !important;
+    flex-flow: row;
+    justify-items: center;
+}
+
+.category-list > *{
+    margin-right: 0.3rem;
+}
+
+
+

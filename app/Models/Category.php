@@ -8,7 +8,7 @@ class Category extends Model
     protected $table = "categories";
 
     const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'last_modified_at';
+    const UPDATED_AT = 'updated_at';
 
     const table = 'categories';
 
@@ -28,12 +28,14 @@ class Category extends Model
 
     protected $hidden = [
         'created_at',
-        'created_by'
+        'created_by',
+        'updated_at'
     ];
 
     protected $appends = [
         'createdAt',
-        'createdBy'
+        'createdBy',
+        'updatedAt'
     ];
     /**
      * @var mixed

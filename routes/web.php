@@ -24,11 +24,13 @@ Route::middleware('auth')->group(function () {
     //routes for notebooks
     Route::post('/add-category', [App\Http\Controllers\CategoriesController::class, 'addCategory'])->name('category.save');
 
-    Route::patch('/edit-category', [App\Http\Controllers\CategoriesController::class, 'editCategory'])->name('category.edit');
+    Route::patch('/edit-category/{id}', [App\Http\Controllers\CategoriesController::class, 'editCategory'])->name('category.edit');
+
+    Route::delete('/delete-category/{id}', [App\Http\Controllers\CategoriesController::class, 'deleteCategory'])->name('category.delete');
 
     Route::get('/manage-category', [App\Http\Controllers\CategoriesController::class, 'manageCategory'])->name('category.manage');
 
-    Route::post('/category', [App\Http\Controllers\CategoriesController::class, 'saveCategory'])->name('category.save');
+    Route::get('/get-category/{id}', [App\Http\Controllers\CategoriesController::class, 'getCategory'])->name('category.get');
 
     Route::get('/products', [App\Http\Controllers\ProductsController::class, 'showProducts'])->name('products');
 

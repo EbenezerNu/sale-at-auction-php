@@ -8,7 +8,7 @@ class Role extends Model
     protected $table = "roles";
 
     const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'last_modified_at';
+    const UPDATED_AT = 'updated_at';
 
     const table = 'roles';
 

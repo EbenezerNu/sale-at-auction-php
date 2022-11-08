@@ -8,7 +8,7 @@ class Review extends Model
     protected $table = "reviews";
 
     const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'last_modified_at';
+    const UPDATED_AT = 'updated_at';
 
     const table = 'reviews';
 

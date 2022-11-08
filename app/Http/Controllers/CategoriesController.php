@@ -41,6 +41,13 @@ class CategoriesController extends Controller
         return view('manage-categories', compact('categories', 'isAdmin'));
     }
 
+    public function getCategory($id)
+    {
+        $category = Category::where('id', $id)->first();
+        $isAdmin = Controller::isAdmin();
+        return view('edit-category', compact('category', 'isAdmin'));
+    }
+
 
     public function addCategory(Request $request){
         $title = $request->new_category_name;
@@ -55,12 +62,12 @@ class CategoriesController extends Controller
                 $save->created_by=Auth::user()->getAuthIdentifierName();
                 $save->save();
 
-                return redirect()->route('categories.manage')->with('message', 'Category has been successfully added');
+                return redirect()->route('category.manage')->with('message', 'Category has been successfully added');
             }else{
-                return redirect()->route('categories.manage')->with('Error', 'Category name is already available');
+                return redirect()->route('category.manage')->with('Error', 'Category name is already available');
             }
 
         }
-        return redirect()->route('categories.manage')->with('Error', 'Category name cannot be empty');
+        return redirect()->route('category.manage')->with('Error', 'Category name cannot be empty');
     }
 }
