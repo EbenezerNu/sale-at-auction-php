@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -30,6 +32,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
+        'role_id',
         'password',
         'remember_token',
     ];
@@ -42,4 +45,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role(){
+        return $this->hasOne('App\Model\Role', 'id', 'role_id');
+    }
+
+    public function isAdmin()
+    {
+        $control = new HomeController();
+        $user = $control->getUser();
+        $user_role = $user['role_name'];
+        if(empty(trim($user_role)) && trim($user_role) == 'ROLE_ADMIN'){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

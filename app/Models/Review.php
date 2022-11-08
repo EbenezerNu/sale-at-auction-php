@@ -48,4 +48,8 @@ class Review extends Model
         return $this->attributes['created_by'];
     }
 
+    public function product(){
+        return $this->hasOne('App\Model\Product', 'id', 'product_id');
+    }
+
 }

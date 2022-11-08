@@ -1,14 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.main')
+
+@section('head')
+    <title>ibuy Auctions</title>
+@endsection
 
 @section('content')
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>ibuy Auctions</title>
-		<link rel="stylesheet" href="{{asset('public/assets/ibuy.css')}}" />
-	</head>
+{{--<!DOCTYPE html>
+<html>--}}
 
-	<body>
 		<header>
 			<h1><span class="i">i</span><span class="b">b</span><span class="u">u</span><span class="y">y</span></h1>
 
@@ -18,16 +17,11 @@
 			</form>
 		</header>
 
-		<nav>
+		<nav id="ibuy_nav">
 			<ul>
-				<li><a class="categoryLink" href="#">Home &amp; Garden</a></li>
-				<li><a class="categoryLink" href="#">Electronics</a></li>
-				<li><a class="categoryLink" href="#">Fashion</a></li>
-				<li><a class="categoryLink" href="#">Sport</a></li>
-				<li><a class="categoryLink" href="#">Health</a></li>
-				<li><a class="categoryLink" href="#">Toys</a></li>
-				<li><a class="categoryLink" href="#">Motors</a></li>
-				<li><a class="categoryLink" href="#">More</a></li>
+                @foreach(  $categories as $category)
+				    <li><a class="categoryLink" href="#">{{$category->name}}</a></li>
+                @endforeach
 			</ul>
 		</nav>
 		<img src="{{asset('public/assets/banners/1.jpg')}}" alt="Banner" />
@@ -37,17 +31,18 @@
 			<h1>Latest Listings / Search Results / Category listing</h1>
 
 			<ul class="productList">
-				<li>
-					<img src="{{asset('public/assets/product.png')}}" alt="product name">
-					<article>
-						<h2>Product name</h2>
-						<h3>Product category</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales ornare purus, non laoreet dolor sagittis id. Vestibulum lobortis laoreet nibh, eu luctus purus volutpat sit amet. Proin nec iaculis nulla. Vivamus nec tempus quam, sed dapibus massa. Etiam metus nunc, cursus vitae ex nec, scelerisque dapibus eros. Donec ac diam a ipsum accumsan aliquet non quis orci. Etiam in sapien non erat dapibus rhoncus porta at lorem. Suspendisse est urna, egestas ut purus quis, facilisis porta tellus. Pellentesque luctus dolor ut quam luctus, nec porttitor risus dictum. Aliquam sed arcu vehicula, tempor velit consectetur, feugiat mauris. Sed non pellentesque quam. Integer in tempus enim.</p>
-
-						<p class="price">Current bid: £123.45</p>
-						<a href="#" class="more auctionLink">More &gt;&gt;</a>
-					</article>
-				</li>
+                @foreach(  $products as $product)
+                    <li>
+                        <img src="{{asset('public/assets/product.png')}}" alt="{{$product->name}}">
+                        <article>
+                            <h2>{{$product->name}}</h2>
+                            <h3>{{$product->category}}</h3>
+                            <p>{{$product->description}}
+                            <p class="price">Current bid: £{{$product->price}}</p>
+                            <a href="{{ route('show-product', $product->id)}}" class="more auctionLink">More &gt;&gt;</a>
+                        </article>
+                    </li>
+                @endforeach
 				<li>
 					<img src="{{asset('public/assets/product.png')}}" alt="product name">
 					<article>
@@ -131,6 +126,5 @@
 				&copy; ibuy 2019
 			</footer>
 		</main>
-	</body>
-</html>
+{{--</html>--}}
 @endsection

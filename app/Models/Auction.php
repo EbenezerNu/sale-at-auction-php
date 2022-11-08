@@ -29,6 +29,7 @@ class Auction extends Model
     ];
 
     protected $hidden = [
+        'product_id',
         'created_at',
         'created_by'
     ];
@@ -46,6 +47,10 @@ class Auction extends Model
     public function getCreatedByAttribute()
     {
         return $this->attributes['created_by'];
+    }
+
+    public function product(){
+        return $this->hasOne('App\Model\Product', 'id', 'product_id');
     }
 
 }

@@ -19,7 +19,7 @@ class Product extends Model
     public $keyType = 'string';
 
     protected $fillable = [
-        'id', 'name', 'category_id', 'created_by'
+        'id', 'name', 'price', 'description', 'category_id', 'created_by'
     ];
 
     protected $dates = [
@@ -29,6 +29,7 @@ class Product extends Model
     ];
 
     protected $hidden = [
+        'category_id',
         'created_at',
         'created_by'
     ];
@@ -46,6 +47,10 @@ class Product extends Model
     public function getCreatedByAttribute()
     {
         return $this->attributes['created_by'];
+    }
+
+    public function category(){
+        return $this->hasOne('App\Model\Category', 'id', 'category_id');
     }
 
 }

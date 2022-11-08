@@ -72,17 +72,17 @@ body > nav {
 }
 body > nav ul li:last-child a:after {content: 'ˬ'; position: absolute;}
 
-body > nav ul {
+#ibuy_nav ul {
 	display: flex;
 	width: 100vw;
 	list-style-type: none;
 }
 
-body > nav ul li {
+#ibuy_nav ul li {
 	flex: 1;
 }
 
-body > nav ul li a {
+#ibuy_nav ul li a {
 	display: block; text-align: center;
 	padding-top: 0.5vw;
 	padding-bottom: 0.5vw;

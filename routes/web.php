@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
     //routes for notebooks
     Route::get('/add-category', [Controllers\CategoriesController::class, 'showCategoryForm'])->name('category.add');
 
+    Route::get('/manage-category', [Controllers\CategoriesController::class, 'manageCategory'])->name('category.manage');
+
     Route::post('/category', [Controllers\CategoriesController::class, 'saveCategory'])->name('category.save');
 
     Route::get('/products', [Controllers\ProductsController::class, 'showProducts'])->name('products');
