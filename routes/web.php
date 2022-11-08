@@ -21,7 +21,9 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    //routes for notebooks
+
+    /*ROUTES FOR CATEGORIES*/
+
     Route::post('/add-category', [App\Http\Controllers\CategoriesController::class, 'addCategory'])->name('category.save');
 
     Route::get('/edit-category/{id}', [App\Http\Controllers\CategoriesController::class, 'editCategoryForm'])->name('category.edit.form');
@@ -32,11 +34,21 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/manage-category', [App\Http\Controllers\CategoriesController::class, 'manageCategory'])->name('category.manage');
 
+    /* ROUTES FOR PRODUCTS*/
+
     Route::get('/manage-products', [App\Http\Controllers\ProductsController::class, 'manageProducts'])->name('products.manage');
 
-    Route::get('/manage-auctions', [App\Http\Controllers\AuctionsController::class, 'manageAuctions'])->name('auctions.manage');
+    Route::post('/add-product', [App\Http\Controllers\ProductsController::class, 'addProduct'])->name('product.save');
 
-    Route::get('/manage-roles', [App\Http\Controllers\RolesController::class, 'manageRoles'])->name('roles.manage');
+    Route::get('/edit-product/{id}', [App\Http\Controllers\ProductsController::class, 'editProductForm'])->name('product.edit.form');
+
+    Route::patch('/edit-product/{id}', [App\Http\Controllers\ProductsController::class, 'editProduct'])->name('product.edit');
+
+    Route::delete('/delete-product/{id}', [App\Http\Controllers\ProductsController::class, 'deleteProduct'])->name('product.delete');
+
+    /* ROUTES FOR AUCTIONS*/
+
+    Route::get('/manage-auctions', [App\Http\Controllers\AuctionsController::class, 'manageAuctions'])->name('auctions.manage');
 
     Route::get('/get-category/{id}', [App\Http\Controllers\CategoriesController::class, 'getCategory'])->name('category.get');
 

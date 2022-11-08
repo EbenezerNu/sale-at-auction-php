@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('head')
-    <title>ibuy Auctions</title>
+    <title>ibuy Admin - Manage Categories</title>
 @endsection
 
 @section('content')
