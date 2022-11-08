@@ -36,14 +36,14 @@
                         <img src="{{asset('public/assets/product.png')}}" alt="{{$product->name}}">
                         <article>
                             <h2>{{$product->name}}</h2>
-                            <h3>{{$product->category}}</h3>
+                            <h3>{{$product->category->name}}</h3>
                             <p>{{$product->description}}
                             <p class="price">Current bid: £{{$product->price}}</p>
                             <a href="{{ route('show-product', $product->id)}}" class="more auctionLink">More &gt;&gt;</a>
                         </article>
                     </li>
                 @endforeach
-				<li>
+				{{--<li>
 					<img src="{{asset('public/assets/product.png')}}" alt="product name">
 					<article>
 						<h2>Product name</h2>
@@ -64,7 +64,7 @@
 						<p class="price">Current bid: £123.45</p>
 						<a href="#" class="more auctionLink">More &gt;&gt;</a>
 					</article>
-				</li>
+				</li>--}}
 			</ul>
 
 			<hr />

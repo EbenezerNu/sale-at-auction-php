@@ -194,3 +194,15 @@ main form input[type=submit] {
 	border: 0;
 
 }
+
+.row-align{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+
+.row-align > *{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}

@@ -22,17 +22,19 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //routes for notebooks
-    Route::get('/add-category', [Controllers\CategoriesController::class, 'showCategoryForm'])->name('category.add');
+    Route::post('/add-category', [App\Http\Controllers\CategoriesController::class, 'addCategory'])->name('category.save');
 
-    Route::get('/manage-category', [Controllers\CategoriesController::class, 'manageCategory'])->name('category.manage');
+    Route::patch('/edit-category', [App\Http\Controllers\CategoriesController::class, 'editCategory'])->name('category.edit');
 
-    Route::post('/category', [Controllers\CategoriesController::class, 'saveCategory'])->name('category.save');
+    Route::get('/manage-category', [App\Http\Controllers\CategoriesController::class, 'manageCategory'])->name('category.manage');
 
-    Route::get('/products', [Controllers\ProductsController::class, 'showProducts'])->name('products');
+    Route::post('/category', [App\Http\Controllers\CategoriesController::class, 'saveCategory'])->name('category.save');
 
-    Route::get('/auctions', [Controllers\AuctionsController::class, 'showAuctions'])->name('auctions');
+    Route::get('/products', [App\Http\Controllers\ProductsController::class, 'showProducts'])->name('products');
 
-    Route::post('/save-review', [Controllers\ReviewsController::class, 'saveReview'])->name('reviews.save');
+    Route::get('/auctions', [App\Http\Controllers\AuctionsController::class, 'showAuctions'])->name('auctions');
+
+    Route::post('/save-review', [App\Http\Controllers\ReviewsController::class, 'saveReview'])->name('reviews.save');
 
 
 });

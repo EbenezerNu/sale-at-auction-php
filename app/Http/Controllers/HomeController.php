@@ -32,13 +32,8 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $products = Product::all();
-        $data = Auth::user();
-        $user_role = Role::where('id', $data->role_id)->first();
-        $isAdmin = false;
-        if(empty($user_role) && trim($user_role->name) == 'ROLE_ADMIN'){
-            $isAdmin = true;
-        }
-        return view('index', compact('categories', '$products', 'isAdmin'));
+        $isAdmin = Controller::isAdmin();
+        return view('index', compact('categories', 'products', 'isAdmin'));
     }
 
     public function getUser(){

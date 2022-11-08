@@ -35,6 +35,9 @@ class Category extends Model
         'createdAt',
         'createdBy'
     ];
+    /**
+     * @var mixed
+     */
 
     public function getCreatedAtAttribute()
     {
