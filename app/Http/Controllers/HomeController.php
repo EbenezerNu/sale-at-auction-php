@@ -28,12 +28,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $categories = Category::all();
+        $keyword = '';
         $products = Product::all();
+        if(!empty($request) && isset($request->search) && trim($request->search) != ""){
+            $keyword = trim($request->search);
+            $products = $products->where('name', 'LIKE','%'.trim($request->search).'%');
+//            $products = $this->filter($products, $keyword);
+        }
         $isAdmin = Controller::isAdmin();
-        return view('index', compact('categories', 'products', 'isAdmin'));
+        return view('index', compact('categories', 'products', 'keyword', 'isAdmin'));
     }
 
     public function getUser(){
@@ -44,5 +50,13 @@ class HomeController extends Controller
         $email =$user->email;
 
         return compact('email','id','role_name');
+    }
+
+    public function filter($products, $keyword){
+        $products = $products->where(function ($qx) use ($keyword) {
+            $qx->orwhere('name', 'ILIKE', '%' . $keyword . '%');
+            $qx->orWhere('description', 'ILIKE', '%' . $keyword . '%');
+        });
+        return $products;
     }
 }

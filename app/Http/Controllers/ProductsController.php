@@ -48,6 +48,10 @@ class ProductsController extends Controller
         $categories = Category::all();
         $reviews = Review::where('product_id', $id);
         $isAdmin = Controller::isAdmin();
+        foreach ($reviews as $review){
+            echo 'Review : '.$review->title;
+        }
+
         return view('view-product', compact('categories','reviews','product', 'isAdmin'));
     }
 
@@ -68,11 +72,11 @@ class ProductsController extends Controller
         if(isset($title) && trim($title) != ""){
             $title_found = Product::where('name',$title)->first();
             if (!empty($title_found->id)){
-                return redirect()->route('product.manage')->with('Error', 'Product name is already available');
+                return redirect()->back()->with('Error', 'Product name is already available');
             }else if (!isset($price) || doubleval($price) <= 0){
-                return redirect()->route('product.manage')->with('Error', 'Product price must be a number');
+                return redirect()->back()->with('Error', 'Product price must be a number');
             }else if (!isset($category_id)){
-                return redirect()->route('product.manage')->with('Error', 'Product category cannot be empty');
+                return redirect()->back()->with('Error', 'Product category cannot be empty');
             }else{
                 $save = new Product();
                 $save->id=Str::uuid();
@@ -84,17 +88,17 @@ class ProductsController extends Controller
                 $save->price = $price;
                 $selected_category = Category::where('id', $category_id)->first();
                 if(empty($selected_category)){
-                    return redirect()->route('product.manage')->with('Error', 'Selected Product category not found');
+                    return redirect()->back()->with('Error', 'Selected Product category not found');
                 }
                 $save->category_id = $category_id;
                 $save->created_by = Auth::user()->getAuthIdentifierName();
                 $save->save();
 
-                return redirect()->route('product.manage')->with('message', 'Product has been successfully added');
+                return redirect()->back()->with('message', 'Product has been successfully added');
             }
 
         }
-        return redirect()->route('product.manage')->with('Error', 'Product name cannot be empty');
+        return redirect()->back()->with('Error', 'Product name cannot be empty');
     }
 
     public function editProductForm($id){

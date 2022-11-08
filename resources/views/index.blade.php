@@ -11,8 +11,8 @@
 		<header>
 			<h1><span class="i">i</span><span class="b">b</span><span class="u">u</span><span class="y">y</span></h1>
 
-			<form action="#">
-				<input type="text" name="search" placeholder="Search for anything" />
+			<form action="{{route('home')}}">
+				<input type="text" name="search" placeholder="Search for anything" value="{{$keyword}}"/>
 				<input type="submit" name="submit" value="Search" />
 			</form>
 		</header>
@@ -69,7 +69,7 @@
 
 			<hr />
 
-			<h1>Product Page</h1>
+			{{--<h1>Product Page</h1>
 			<article class="product">
 
 					<img src="{{asset('public/assets/product.png')}}" alt="product name">
@@ -118,7 +118,7 @@
 						<input type="radio" /> <label>Radio</label>
 						<input type="submit" value="Submit" />
 
-					</form>
+					</form>--}}
 
 
 
