@@ -23,7 +23,7 @@
                 </div>
                 <div class="row-align">
                     <label for="new_product_price">Price</label>
-                    <input type="text" name="new_product_price" class="form-control" value="{{$product->name}}">
+                    <input type="text" name="new_product_price" class="form-control" value="{{$product->price}}">
                 </div>
                 <div class="row-align">
                     <label for="new_product_category">Category</label>

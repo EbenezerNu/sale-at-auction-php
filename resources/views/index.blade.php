@@ -39,7 +39,7 @@
                             <h3>{{$product->category->name}}</h3>
                             <p>{{$product->description}}
                             <p class="price">Current bid: £{{$product->price}}</p>
-                            <a href="{{ route('show-product', $product->id)}}" class="more auctionLink">More &gt;&gt;</a>
+                            <a href="{{ route('product.view', $product->id)}}" class="more auctionLink">More &gt;&gt;</a>
                         </article>
                     </li>
                 @endforeach

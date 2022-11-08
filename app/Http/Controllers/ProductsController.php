@@ -31,7 +31,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return Products::all();
+        return Product::all();
     }
 
     public function manageProducts()
@@ -46,8 +46,9 @@ class ProductsController extends Controller
     {
         $product = Product::where('id', $id)->first();
         $categories = Category::all();
+        $reviews = Review::where('product_id', $id);
         $isAdmin = Controller::isAdmin();
-        return view('edit-product', compact('categories','product', 'isAdmin'));
+        return view('view-product', compact('categories','reviews','product', 'isAdmin'));
     }
 
     public function deleteProduct($id)
@@ -63,14 +64,14 @@ class ProductsController extends Controller
         $title = $request->new_product_name;
         $description = $request->new_product_description;
         $price = $request->new_product_price;
-        $category = $request->new_product_category;
+        $category_id = $request->new_product_category;
         if(isset($title) && trim($title) != ""){
             $title_found = Product::where('name',$title)->first();
             if (!empty($title_found->id)){
                 return redirect()->route('product.manage')->with('Error', 'Product name is already available');
             }else if (!isset($price) || doubleval($price) <= 0){
                 return redirect()->route('product.manage')->with('Error', 'Product price must be a number');
-            }else if (!isset($category)){
+            }else if (!isset($category_id)){
                 return redirect()->route('product.manage')->with('Error', 'Product category cannot be empty');
             }else{
                 $save = new Product();
@@ -81,11 +82,11 @@ class ProductsController extends Controller
                 }
                 $save->description = $description;
                 $save->price = $price;
-                $selected_category = Category::where('id', $category)->first();
+                $selected_category = Category::where('id', $category_id)->first();
                 if(empty($selected_category)){
                     return redirect()->route('product.manage')->with('Error', 'Selected Product category not found');
                 }
-                $save->category_id = $category;
+                $save->category_id = $category_id;
                 $save->created_by = Auth::user()->getAuthIdentifierName();
                 $save->save();
 
@@ -110,7 +111,7 @@ class ProductsController extends Controller
         $title = $request->new_product_name;
         $description = $request->new_product_description;
         $price = $request->new_product_price;
-        $category = $request->new_product_category;
+        $category_id = $request->new_product_category;
         if(isset($title) && trim($title) != "" && trim($description) != "" ){
             $product = Product::where('id', $id)->first();
             if (!empty($product)){
@@ -119,16 +120,16 @@ class ProductsController extends Controller
                     $description = "All ".$title;
                 }else if (!isset($price) || doubleval($price) <= 0){
                     return redirect()->back()->with('Error', 'Product price must be a number');
-                }else if (!isset($category)){
+                }else if (!isset($category_id)){
                     return redirect()->back()->with('Error', 'Product category cannot be empty');
                 }
                 $product->description = $description;
                 $product->price = $price;
-                $selected_category = Category::where('id', $category)->first();
+                $selected_category = Category::where('id', $category_id)->first();
                 if(empty($selected_category)){
                     return redirect()->back()->with('Error', 'Selected Product category not found');
                 }
-                $product->category_id = $category;
+                $product->category_id = $category_id;
                 $product->save();
 
                 return redirect()->route('product.manage')->with('message', 'Product has been successfully added');

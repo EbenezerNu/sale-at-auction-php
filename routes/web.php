@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/edit-product/{id}', [App\Http\Controllers\ProductsController::class, 'editProductForm'])->name('product.edit.form');
 
+    Route::get('/view-product/{id}', [App\Http\Controllers\ProductsController::class, 'getProduct'])->name('product.view');
+
     Route::patch('/edit-product/{id}', [App\Http\Controllers\ProductsController::class, 'editProduct'])->name('product.edit');
 
     Route::delete('/delete-product/{id}', [App\Http\Controllers\ProductsController::class, 'deleteProduct'])->name('product.delete');
@@ -56,7 +58,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/auctions', [App\Http\Controllers\AuctionsController::class, 'showAuctions'])->name('auctions');
 
-    Route::post('/save-review', [App\Http\Controllers\ReviewsController::class, 'saveReview'])->name('reviews.save');
+    Route::post('/add-review/{id}', [App\Http\Controllers\ReviewsController::class, 'addReview'])->name('reviews.save');
 
 
 });

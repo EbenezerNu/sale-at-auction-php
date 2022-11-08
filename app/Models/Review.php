@@ -19,7 +19,7 @@ class Review extends Model
     public $keyType = 'string';
 
     protected $fillable = [
-        'id', 'title', 'product_id', 'created_by'
+        'id', 'title','description', 'product_id', 'created_by'
     ];
 
     protected $dates = [
@@ -49,7 +49,7 @@ class Review extends Model
     }
 
     public function product(){
-        return $this->hasOne('App\Model\Product', 'id', 'product_id');
+        return $this->hasOne('App\Models\Product', 'id', 'product_id');
     }
 
 }
