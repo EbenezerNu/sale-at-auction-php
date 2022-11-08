@@ -4,14 +4,14 @@ namespace App\Model\Setup;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model
+class Role extends Model
 {
-    protected $table = "reviews";
+    protected $table = "roles";
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'last_modified_at';
 
-    const table = 'reviews';
+    const table = 'roles';
 
     protected $casts = [
         'id' => 'string'
@@ -20,12 +20,10 @@ class Review extends Model
     public $keyType = 'string';
 
     protected $fillable = [
-        'id', 'title', 'product_id', 'created_by'
+        'id', 'name', 'description','created_by'
     ];
 
     protected $dates = [
-        'start_date',
-        'end_date',
         'created_at'
     ];
 

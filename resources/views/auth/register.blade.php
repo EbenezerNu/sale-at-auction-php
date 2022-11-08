@@ -44,7 +44,10 @@
 
                             <div class="col-md-6">
                                 <select class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required>
-
+                                    @foreach($roles as $role)
+                                        <option value="{{$role->id}}">{{$role->name}}</option>
+                                    @endforeach
+                                </select>
                                 @error('role')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
