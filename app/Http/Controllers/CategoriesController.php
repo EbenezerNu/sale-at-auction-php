@@ -48,6 +48,14 @@ class CategoriesController extends Controller
         return view('edit-category', compact('category', 'isAdmin'));
     }
 
+    public function deleteCategory($id)
+    {
+        Category::destroy($id);
+        if(Category::find($id)>0)
+            return redirect()->back()->with('error', 'Category could not be deleted');
+        return redirect()->back()->with('message', 'Category has been deleted successfully');
+    }
+
 
     public function addCategory(Request $request){
         $title = $request->new_category_name;
@@ -58,6 +66,9 @@ class CategoriesController extends Controller
                 $save = new Category();
                 $save->id=Str::uuid();
                 $save->name=$title;
+                if(!isset($description) || trim($description) != ""){
+                    $description = "All ".$title;
+                }
                 $save->description=$description;
                 $save->created_by=Auth::user()->getAuthIdentifierName();
                 $save->save();

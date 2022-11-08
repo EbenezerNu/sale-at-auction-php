@@ -232,8 +232,12 @@ main form input[type=submit] {
     width: 6rem;
 }
 
+.delete-btn-form{
+    width: 6rem;
+}
+
 .category-name{
-    width: auto;
+    width: 80%;
 }
 
 .category-list {
@@ -245,6 +249,7 @@ main form input[type=submit] {
 .category-list > *{
     margin-right: 0.3rem;
 }
+
 
 
 

@@ -33,24 +33,36 @@
 		<main>
 
 			<h1>Manage Categories</h1>
+            <br>
+            <div>
+                <hr>
+                <h3>Add Category Form</h3>
+                <hr>
+                <form action="{{route('category.save')}}"method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('POST')}}
+                    <div class="row-align">
+                        <label for="new_category_name">Name</label>
+                        <input type="text" name="new_category_name" class="form-control">
+                    </div>
+                    <div class="row-align">
+                        <label for="new_category_description">Description</label>
+                        <input type="text" name="new_category_description" class="form-control">
+                    </div>
 
-            <form action="{{route('category.save')}}"method="POST">
-                {{ csrf_field() }}
-                {{ method_field('POST')}}
-                <div class="row-align">
-                    <label for="new_category_name">Name</label>
-                    <input type="text" name="new_category_name" class="form-control">
-                </div>
-                <div class="row-align">
-                    <label for="new_category_description">Description</label>
-                    <input type="text" name="new_category_description" class="form-control">
-                </div>
+                    <button class="btn add-btn form-control" type="submit">Save</button>
+                </form>
+                <hr>
+            </div>
 
-                <button class="btn add-btn form-control" type="submit">Save</button>
-            </form>
+            <br>
+            <div class="row">
+                <hr>
+                <h3>Available Categories</h3>
 
-			<ul class="productList">
+			    <ul class="productList">
                 @foreach(  $categories as $category)
+                    <hr />
                     <li class="row category-list">
                         <input value="{{$category->name}}" type="text" disabled class="form-control category-name">
                         <button class="btn edit-btn form-control"><a class="categoryLink" href="{{route('category.edit', $category->id)}}">Edit</a></button>
@@ -60,10 +72,11 @@
                             <button type="submit" class="btn delete-btn form-control">Delete</button>
                         </form>
                     </li>
-                    <hr />
                 @endforeach
 			</ul>
 
+                <hr>
+            </div>
 
 
 
