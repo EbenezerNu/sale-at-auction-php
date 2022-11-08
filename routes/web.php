@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::get('/filter-category/{id}', [App\Http\Controllers\HomeController::class, 'filterByCategory'])->name('filter-category');
+
     /*ROUTES FOR CATEGORIES*/
 
     Route::post('/add-category', [App\Http\Controllers\CategoriesController::class, 'addCategory'])->name('category.save');

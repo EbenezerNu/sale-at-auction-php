@@ -32,6 +32,7 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $keyword = '';
+        $selected_category = '';
         $products = Product::all();
         if(!empty($request) && isset($request->search) && trim($request->search) != ""){
             $keyword = trim($request->search);
@@ -39,7 +40,21 @@ class HomeController extends Controller
 //            $products = $this->filter($products, $keyword);
         }
         $isAdmin = Controller::isAdmin();
-        return view('index', compact('categories', 'products', 'keyword', 'isAdmin'));
+        return view('index', compact('categories', 'products',  'selected_category' , 'keyword', 'isAdmin'));
+    }
+
+    public function filterByCategory(Request $request, $id)
+    {
+        $categories = Category::all();
+        $keyword = '';
+        $selected_category = '';
+        $products = Product::all();
+        if(isset($id)){
+            $products = $products->where('category_id', $id);
+            $selected_category = $id;
+        }
+        $isAdmin = Controller::isAdmin();
+        return view('index', compact('categories', 'products', 'selected_category' ,'keyword', 'isAdmin'));
     }
 
     public function getUser(){

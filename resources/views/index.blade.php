@@ -20,7 +20,7 @@
 		<nav id="ibuy_nav">
 			<ul>
                 @foreach(  $categories as $category)
-				    <li><a class="categoryLink" href="#">{{$category->name}}</a></li>
+				    <li><a class="categoryLink @if($selected_category == $category->id) active @endif " href="{{route('filter-category', $category->id)}}">{{$category->name}}</a></li>
                 @endforeach
 			</ul>
 		</nav>
