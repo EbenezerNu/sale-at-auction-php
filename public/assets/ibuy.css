@@ -232,6 +232,11 @@ main form input[type=submit] {
     width: 6rem;
 }
 
+.manage-btn{
+    width: 11rem;
+    margin: 0rem 10rem;
+}
+
 .delete-btn-form{
     width: 6rem;
 }

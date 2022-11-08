@@ -32,6 +32,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/manage-category', [App\Http\Controllers\CategoriesController::class, 'manageCategory'])->name('category.manage');
 
+    Route::get('/manage-products', [App\Http\Controllers\ProductsController::class, 'manageProducts'])->name('products.manage');
+
+    Route::get('/manage-auctions', [App\Http\Controllers\AuctionsController::class, 'manageAuctions'])->name('auctions.manage');
+
+    Route::get('/manage-roles', [App\Http\Controllers\RolesController::class, 'manageRoles'])->name('roles.manage');
+
     Route::get('/get-category/{id}', [App\Http\Controllers\CategoriesController::class, 'getCategory'])->name('category.get');
 
     Route::get('/products', [App\Http\Controllers\ProductsController::class, 'showProducts'])->name('products');

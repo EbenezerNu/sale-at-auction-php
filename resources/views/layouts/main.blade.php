@@ -39,9 +39,23 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 @if ($isAdmin)
-                    <button class="btn form-control">
-                        <a class="nav-link" href="{{ route('category.manage') }}">Manage Category</a>
-                    </button>
+                    <ul class="navbar-nav ms-auto">
+                        {{--<li class="nav-item"><a class="nav-link" href="{{ route('category.manage') }}">Manage Category</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('products.manage') }}">Manage Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('roles.manage') }}">Manage Roles</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('auctions.manage') }}">Manage Auction</a></li>--}}
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Admin Features
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('category.manage') }}">Manage Category</a>
+                                <a class="dropdown-item" href="{{ route('products.manage') }}">Manage Products</a>
+                                <a class="dropdown-item" href="{{ route('roles.manage') }}">Manage Roles</a>
+                                <a class="dropdown-item" href="{{ route('auctions.manage') }}">Manage Auctions</a>
+                            </div>
+                        </li>
                 @endif
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
