@@ -31,8 +31,7 @@
 --}}
 
 		<main>
-
-			<h1>Manage Categories</h1>
+            <h2 class="header">Manage Categories</h2>
             <br>
             <div>
                 <hr>
@@ -65,7 +64,7 @@
                     <hr />
                     <li class="row category-list">
                         <input value="{{$category->name}}" type="text" disabled class="form-control category-name">
-                        <button class="btn edit-btn form-control"><a class="categoryLink" href="{{route('category.edit', $category->id)}}">Edit</a></button>
+                        <button class="btn edit-btn form-control"><a class="categoryLink" href="{{route('category.edit.form', $category->id)}}">Edit</a></button>
                         <form action="{{route('category.delete', $category->id)}}"method="POST" class="delete-btn-form">
                             {{ csrf_field() }}
                             {{ method_field('DELETE')}}

@@ -5,56 +5,61 @@
 @endsection
 
 @section('content')
-{{--<!DOCTYPE html>
-<html>--}}
+    {{--<!DOCTYPE html>
+    <html>--}}
 
-		{{--<header>
-			<h1><span class="i">i</span><span class="b">b</span><span class="u">u</span><span class="y">y</span></h1>
+    {{--<header>
+        <h1><span class="i">i</span><span class="b">b</span><span class="u">u</span><span class="y">y</span></h1>
 
-			<form action="#">
-				<input type="text" name="search" placeholder="Search for anything" />
-				<input type="submit" name="submit" value="Search" />
-			</form>
-		</header>--}}
+        <form action="#">
+            <input type="text" name="search" placeholder="Search for anything" />
+            <input type="submit" name="submit" value="Search" />
+        </form>
+    </header>--}}
 
-{{--
-		<nav id="ibuy_nav">
-			<ul>
-                @foreach(  $categories as $category)
-				    <li><a class="categoryLink" href="#">{{$category->name}}</a></li>
-                @endforeach
-			</ul>
-		</nav>
-		<img src="{{asset('public/assets/banners/1.jpg')}}" alt="Banner" />
+    {{--
+            <nav id="ibuy_nav">
+                <ul>
+                    @foreach(  $categories as $category)
+                        <li><a class="categoryLink" href="#">{{$category->name}}</a></li>
+                    @endforeach
+                </ul>
+            </nav>
+            <img src="{{asset('public/assets/banners/1.jpg')}}" alt="Banner" />
 
 
---}}
+    --}}
 
-		<main>
+    <main>
 
-			<h1>Manage Categories</h1>
+        <h2 class="header">Manage Categories</h2>
+        <br>
+        <div>
+            <hr>
+            <h3>Edit Category Form</h3>
+            <hr>
+            <form action="{{route('category.edit', $category->id)}}"method="POST">
+                {{ csrf_field() }}
+                {{ method_field('PATCH')}}
+                <div class="row-align">
+                    <label for="new_category_name">Name</label>
+                    <input type="text" name="new_category_name" class="form-control" value="{{$category->name}}">
+                </div>
+                <div class="row-align">
+                    <label for="new_category_description">Description</label>
+                    <input type="text" name="new_category_description" class="form-control" value="{{$category->description}}">
+                </div>
 
-            <button class="btn add-btn"></button>
-
-            <h1>Add Category Page</h1>
-
-            <hr />
-            <h1>Category Form</h1>
-
-            <form action="#">
-                <label>Category Name</label> <input type="text" name="category_name" />
-                <label>Another Text box</label> <input type="text" />
-                <input type="checkbox" /> <label>Checkbox</label>
-                <input type="radio" /> <label>Radio</label>
-                <input type="submit" value="Submit" />
-
+                <button class="btn add-btn form-control" type="submit">Save</button>
             </form>
+            <hr>
+        </div>
 
 
 
-			<footer>
-				&copy; ibuy 2019
-			</footer>
-		</main>
-{{--</html>--}}
+        <footer>
+            &copy; ibuy 2019
+        </footer>
+    </main>
+    {{--</html>--}}
 @endsection

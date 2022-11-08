@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
     //routes for notebooks
     Route::post('/add-category', [App\Http\Controllers\CategoriesController::class, 'addCategory'])->name('category.save');
 
+    Route::get('/edit-category/{id}', [App\Http\Controllers\CategoriesController::class, 'editCategoryForm'])->name('category.edit.form');
+
     Route::patch('/edit-category/{id}', [App\Http\Controllers\CategoriesController::class, 'editCategory'])->name('category.edit');
 
     Route::delete('/delete-category/{id}', [App\Http\Controllers\CategoriesController::class, 'deleteCategory'])->name('category.delete');

@@ -250,6 +250,9 @@ main form input[type=submit] {
     margin-right: 0.3rem;
 }
 
-
+.header{
+    font-weight: bold;
+    text-align: center;
+}
 
 

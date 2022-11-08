@@ -81,4 +81,35 @@ class CategoriesController extends Controller
         }
         return redirect()->route('category.manage')->with('Error', 'Category name cannot be empty');
     }
+
+    public function editCategoryForm($id){
+        $category = Category::where('id', $id)->first();
+        if (empty($category)){
+            return redirect()->back()->with('Error', 'Category does not exist');
+        }
+        $isAdmin = $this->isAdmin();
+        return view('categories-form', compact('category', 'isAdmin'));
+    }
+
+    public function editCategory(Request $request, $id){
+        $title = $request->new_category_name;
+        $description = $request->new_category_description;
+        if(isset($title) && trim($title) != "" && trim($description) != "" ){
+            $category = Category::where('id', $id)->first();
+            if (!empty($category)){
+                $category->name=$title;
+                if(!isset($description) || trim($description) != ""){
+                    $description = "All ".$title;
+                }
+                $category->description=$description;
+                $category->save();
+
+                return redirect()->route('category.manage')->with('message', 'Category has been successfully added');
+            }else{
+                return redirect()->back()->with('Error', 'Category name is already available');
+            }
+
+        }
+        return redirect()->back()->with('Error', 'Category name cannot be empty');
+    }
 }
