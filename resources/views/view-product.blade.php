@@ -28,14 +28,15 @@
             </ul>
 
             <hr />
-
+            <br>
             <article class="product">
 
                 <section class="reviews">
+
                     <h2>Reviews of {{ Auth::user()->name }}</h2>
                     <ul>
                         @foreach($reviews as $review)
-                            <li><strong>{{$review->createdby}} said </strong> {{$review->desciption}} <em>{{$review->createdAt}}</em></li>
+                            <li><strong>{{$review->createdby}} said </strong> {{$review->description}} <em>{{$review->createdAt}}</em></li>
                         @endforeach
 
                     </ul>

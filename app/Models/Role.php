@@ -19,7 +19,7 @@ class Role extends Model
     public $keyType = 'string';
 
     protected $fillable = [
-        'id', 'name', 'description','created_by'
+        'id', 'name', 'description'
     ];
 
     protected $dates = [
@@ -28,22 +28,15 @@ class Role extends Model
 
     protected $hidden = [
         'created_at',
-        'created_by'
     ];
 
     protected $appends = [
         'createdAt',
-        'createdBy'
     ];
 
     public function getCreatedAtAttribute()
     {
         return $this->asDateTime($this->attributes['created_at']);
-    }
-
-    public function getCreatedByAttribute()
-    {
-        return $this->attributes['created_by'];
     }
 
 }

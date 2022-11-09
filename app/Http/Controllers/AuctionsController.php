@@ -70,7 +70,7 @@ class AuctionsController extends Controller
                     $description = "All ".$title;
                 }
                 $save->description=$description;
-                $save->created_by=Auth::user()->getAuthIdentifierName();
+                $save->created_by=Controller::getUsername();
                 $save->save();
 
                 return redirect()->route('auction.manage')->with('message', 'Auction has been successfully added');

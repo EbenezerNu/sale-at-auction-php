@@ -70,7 +70,7 @@ class ReviewsController extends Controller
             $save->title=$title;
             $save->description=$title;
             $save->product_id = $id;
-            $save->created_by = Auth::user()->getAuthIdentifierName();
+            $save->created_by = Controller::getUsername();
             $save->save();
 
             return redirect()->back()->with('message', 'Review has been successfully added');
@@ -111,7 +111,6 @@ class ReviewsController extends Controller
                     return redirect()->back()->with('Error', 'Selected Review category not found');
                 }
                 $review->category_id = $category_id;
-                $review->created_by = Auth::user()->getAuthIdentifierName();
                 $review->save();
 
                 return redirect()->route('review.manage')->with('message', 'Review has been successfully added');

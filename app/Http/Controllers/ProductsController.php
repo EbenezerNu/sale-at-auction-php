@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Auction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class ProductsController extends Controller
@@ -46,13 +47,14 @@ class ProductsController extends Controller
     {
         $product = Product::where('id', $id)->first();
         $categories = Category::all();
-        $reviews = Review::where('product_id', $id);
+        $reviews = Review::where('product_id', $id)->get();
         $isAdmin = Controller::isAdmin();
+        Log::info('Reviews has size of  '.sizeOf($reviews));
         foreach ($reviews as $review){
-            echo 'Review : '.$review->title;
+            Log::info('Review  : '.$review->description);
         }
 
-        return view('view-product', compact('categories','reviews','product', 'isAdmin'));
+        return view('view-product', compact('reviews','categories','product', 'isAdmin'));
     }
 
     public function deleteProduct($id)
@@ -91,7 +93,7 @@ class ProductsController extends Controller
                     return redirect()->back()->with('Error', 'Selected Product category not found');
                 }
                 $save->category_id = $category_id;
-                $save->created_by = Auth::user()->getAuthIdentifierName();
+                $save->created_by = Controller::getUsername();
                 $save->save();
 
                 return redirect()->back()->with('message', 'Product has been successfully added');
