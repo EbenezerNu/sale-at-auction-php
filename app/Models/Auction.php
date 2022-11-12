@@ -19,7 +19,7 @@ class Auction extends Model
     public $keyType = 'string';
 
     protected $fillable = [
-        'id', 'name', 'description', 'product_id', 'start_date', 'end_date', 'created_by'
+        'id', 'title', 'description', 'category_id', 'start_date', 'end_date', 'created_by'
     ];
 
     protected $dates = [
@@ -29,7 +29,7 @@ class Auction extends Model
     ];
 
     protected $hidden = [
-        'product_id',
+        'category_id',
         'created_at',
         'created_by'
     ];
@@ -49,8 +49,8 @@ class Auction extends Model
         return $this->attributes['created_by'];
     }
 
-    public function product(){
-        return $this->hasOne('App\Models\Product', 'id', 'product_id');
+    public function category(){
+        return $this->hasOne('App\Models\Category', 'id', 'category_id');
     }
 
 }
