@@ -54,6 +54,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/manage-auctions', [App\Http\Controllers\AuctionsController::class, 'manageAuctions'])->name('auction.manage');
 
+    Route::post('/add-auction', [App\Http\Controllers\AuctionsController::class, 'addAuction'])->name('auction.save');
+
+    Route::get('/edit-auction/{id}', [App\Http\Controllers\AuctionsController::class, 'editAuctionForm'])->name('auction.edit.form');
+
+    Route::patch('/edit-auction/{id}', [App\Http\Controllers\AuctionsController::class, 'editAuction'])->name('auction.edit');
+
+    /* OTHERS */
+
     Route::get('/get-category/{id}', [App\Http\Controllers\CategoriesController::class, 'getCategory'])->name('category.get');
 
     Route::get('/products', [App\Http\Controllers\ProductsController::class, 'showProducts'])->name('products');
