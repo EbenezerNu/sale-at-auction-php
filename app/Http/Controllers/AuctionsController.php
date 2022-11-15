@@ -8,9 +8,10 @@ use App\Models\Role;
 use App\Models\Review;
 use App\Models\Product;
 use App\Models\Auction;
-use Carbon\Traits\Date;
+use Faker\Core\Number;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 
 class AuctionsController extends Controller
@@ -47,8 +48,9 @@ class AuctionsController extends Controller
     {
         $auction = Auction::where('id', $id)->first();
         $categories = Category::all();
+        $reviews = Review::where('auction_id', $id)->get();
         $isAdmin = Controller::isAdmin();
-        return view('edit-auction', compact('categories', 'auction', 'isAdmin'));
+        return view('edit-auction', compact('categories', 'auction', 'reviews', 'isAdmin'));
     }
 
     public function deleteAuction($id)
@@ -61,18 +63,19 @@ class AuctionsController extends Controller
 
 
     public function addAuction(Request $request){
-        $title = $request->new_auction_title;
+        $name = $request->new_auction_title;
         $description = $request->new_auction_description;
         $category = $request->new_auction_category;
+        $bid = $request->new_auction_starting_bid;
         $end_date = $request->new_auction_end_date;
-        if(isset($title) && trim($title) != ""){
-            $title_found = Auction::where('name',$title)->first();
-            if (empty($title_found->id)){
+        if(isset($title) && trim($name) != ""){
+            $name_found = Auction::where('name', $name)->first();
+            if (empty($name_found->id)){
                 $save = new Auction();
                 $save->id=Str::uuid();
-                $save->title=$title;
+                $save->name=$name;
                 if(!isset($description) || trim($description) != ""){
-                    $description = "Auction on ".$title;
+                    $description = "Auction on ".$name;
                 }
                 $save->description=$description;
                 $category_found = Category::where('id',$category)->first();
@@ -84,6 +87,10 @@ class AuctionsController extends Controller
                     return redirect()->route('auction.manage')->with('Error', 'End Date cannot be earlier than today');
                 }
                 $save->start_date=Date::today();
+                if (!isset($bid) || doubleval($bid) <= 0){
+                    return redirect()->back()->with('Error', 'Auction starting price must be a number greater than 0');
+                }
+                $save->price=$bid;
                 $save->end_date=$end_date;
 
                 $save->created_by=Controller::getUsername();
@@ -113,6 +120,7 @@ class AuctionsController extends Controller
         $description = $request->new_auction_description;
         $selectedCategory = $request->new_auction_category;
         $end_date = $request->new_auction_end_date;
+        $bid = $request->new_auction_starting_bid;
         if(isset($title) && trim($title) != "" && trim($description) != "" ){
             $auction = Category::where('id', $id)->first();
             if (!empty($auction)){
@@ -130,6 +138,10 @@ class AuctionsController extends Controller
                     return redirect()->route('auction.manage')->with('Error', 'End Date cannot be earlier than today');
                 }
                 $auction->start_date=Date::today();
+                if (!isset($bid) || doubleval($bid) <= 0) {
+                    return redirect()->route('auction.manage')->with('Error', 'Starting should be greater than 0');
+                }
+                $auction->price=$bid;
                 $auction->end_date=$end_date;
                 $auction->save();
 

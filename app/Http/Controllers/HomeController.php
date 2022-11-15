@@ -33,14 +33,14 @@ class HomeController extends Controller
         $categories = Category::all();
         $keyword = '';
         $selected_category = '';
-        $products = Product::all();
+        $auctions = Auction::all();
         if(!empty($request) && isset($request->search) && trim($request->search) != ""){
             $keyword = trim($request->search);
-            $products = $products->where('name', 'LIKE','%'.trim($request->search).'%');
+            $auctions = $auctions->where('name', 'LIKE','%'.trim($request->search).'%');
 //            $products = $this->filter($products, $keyword);
         }
         $isAdmin = Controller::isAdmin();
-        return view('index', compact('categories', 'products',  'selected_category' , 'keyword', 'isAdmin'));
+        return view('index', compact('categories', 'auctions',  'selected_category' , 'keyword', 'isAdmin'));
     }
 
     public function filterByCategory(Request $request, $id)
@@ -48,13 +48,13 @@ class HomeController extends Controller
         $categories = Category::all();
         $keyword = '';
         $selected_category = '';
-        $products = Product::all();
+        $auctions = Auction::all();
         if(isset($id)){
-            $products = $products->where('category_id', $id);
+            $auctions = $auctions->where('category_id', $id);
             $selected_category = $id;
         }
         $isAdmin = Controller::isAdmin();
-        return view('index', compact('categories', 'products', 'selected_category' ,'keyword', 'isAdmin'));
+        return view('index', compact('categories', 'auctions', 'selected_category' ,'keyword', 'isAdmin'));
     }
 
     public function getUser(){

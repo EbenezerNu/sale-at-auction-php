@@ -18,15 +18,19 @@
                     {{ method_field('POST')}}
                     <div class="row-align">
                         <label for="new_auction_title">Title</label>
-                        <input type="text" name="new_auction_title" class="form-control">
+                        <input type="text" name="new_auction_title" class="form-control" required>
                     </div>
                     <div class="row-align">
                         <label for="new_auction_category">Category</label>
-                        <select name="new_auction_category" class="form-control select-btn">
+                        <select name="new_auction_category" class="form-control select-btn" required>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="row-align">
+                        <label for="new_auction_description">Starting Bid</label>
+                        <input type="text" name="new_auction_starting_bid" class="form-control" required>
                     </div>
                     <div class="row-align">
                         <label for="new_auction_description">Description</label>
@@ -34,7 +38,7 @@
                     </div>
                     <div class="row-align">
                         <label for="new_auction_end_date">End Date</label>
-                        <input type="Date" name="new_auction_end_date" class="form-control">
+                        <input type="Date" name="new_auction_end_date" class="form-control" required>
                     </div>
 
                     <button class="btn add-btn form-control" type="submit">Save</button>

@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/add-auction', [App\Http\Controllers\AuctionsController::class, 'addAuction'])->name('auction.save');
 
+    Route::get('/view-auction/{id}', [App\Http\Controllers\AuctionsController::class, 'getAuction'])->name('auction.view');
+
     Route::get('/edit-auction/{id}', [App\Http\Controllers\AuctionsController::class, 'editAuctionForm'])->name('auction.edit.form');
 
     Route::patch('/edit-auction/{id}', [App\Http\Controllers\AuctionsController::class, 'editAuction'])->name('auction.edit');

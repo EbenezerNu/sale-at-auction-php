@@ -19,7 +19,7 @@ class Review extends Model
     public $keyType = 'string';
 
     protected $fillable = [
-        'id', 'title','description', 'product_id', 'created_by'
+        'id', 'title','description', 'auction_id', 'created_by'
     ];
 
     protected $dates = [
@@ -48,8 +48,8 @@ class Review extends Model
         return $this->attributes['created_by'];
     }
 
-    public function product(){
-        return $this->hasOne('App\Models\Product', 'id', 'product_id');
+    public function auction(){
+        return $this->hasOne('App\Models\Auction', 'id', 'auction_id');
     }
 
 }

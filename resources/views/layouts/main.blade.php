@@ -30,6 +30,16 @@
     </script>
 </head>
 <body id="app">
+        @if(isset($error))
+            <div class="alert alert-danger">
+                <span>{{error}}</span>
+            </div>
+        @endif
+        @if(isset($error))
+            <div class="error-alert">
+                <span>{{error}}</span>
+            </div>
+        @endif
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">

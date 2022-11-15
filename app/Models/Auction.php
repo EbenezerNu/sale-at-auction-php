@@ -19,7 +19,7 @@ class Auction extends Model
     public $keyType = 'string';
 
     protected $fillable = [
-        'id', 'title', 'description', 'category_id', 'start_date', 'end_date', 'created_by'
+        'id', 'name',  'price', 'description', 'category_id', 'start_date', 'end_date', 'created_by'
     ];
 
     protected $dates = [

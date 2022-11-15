@@ -49,10 +49,6 @@ class ProductsController extends Controller
         $categories = Category::all();
         $reviews = Review::where('product_id', $id)->get();
         $isAdmin = Controller::isAdmin();
-        Log::info('Reviews has size of  '.sizeOf($reviews));
-        foreach ($reviews as $review){
-            Log::info('Review  : '.$review->description);
-        }
 
         return view('view-product', compact('reviews','categories','product', 'isAdmin'));
     }

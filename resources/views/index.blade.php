@@ -31,15 +31,15 @@
 			<h1>Latest Listings / Search Results / Category listing</h1>
 
 			<ul class="productList">
-                @foreach(  $products as $product)
+                @foreach(  $auctions as $auction)
                     <li>
-                        <img src="{{asset('public/assets/product.png')}}" alt="{{$product->name}}">
+                        <img src="{{asset('public/assets/product.png')}}" alt="{{$auction->name}}">
                         <article>
-                            <h2>{{$product->name}}</h2>
-                            <h3>{{$product->category->name}}</h3>
-                            <p>{{$product->description}}
-                            <p class="price">Current bid: £{{$product->price}}</p>
-                            <a href="{{ route('product.view', $product->id)}}" class="more auctionLink">More &gt;&gt;</a>
+                            <h2>{{$auction->name}}</h2>
+                            <h3>{{$auction->category->name}}</h3>
+                            <p>{{$auction->description}}
+                            <p class="price">Current bid: £{{$auction->price}}</p>
+                            <a href="{{ route('auction.view', $auction->id)}}" class="more auctionLink">More &gt;&gt;</a>
                         </article>
                     </li>
                 @endforeach

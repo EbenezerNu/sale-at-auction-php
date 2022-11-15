@@ -15,13 +15,13 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('product_id');
+            $table->uuid('auction_id');
             $table->string('title');
             $table->longText('description');
             $table->string('created_by');
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('auction_id')->references('id')->on('auctions')->onDelete('cascade');
         });
 
         // Schema::table('reviews', function($table) {
