@@ -51,7 +51,7 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('category.manage') }}">Manage Category</a>
-                                <a class="dropdown-item" href="{{ route('product.manage') }}">Manage Products</a>
+{{--                                <a class="dropdown-item" href="{{ route('product.manage') }}">Manage Products</a>--}}
                                 <a class="dropdown-item" href="{{ route('auction.manage') }}">Manage Auctions</a>
                             </div>
                         </li>
