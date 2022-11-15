@@ -32,6 +32,10 @@
                         <label for="new_auction_description">Description</label>
                         <input type="text" name="new_auction_description" class="form-control">
                     </div>
+                    <div class="row-align">
+                        <label for="new_auction_end_date">End Date</label>
+                        <input type="Date" name="new_auction_end_date" class="form-control">
+                    </div>
 
                     <button class="btn add-btn form-control" type="submit">Save</button>
                 </form>
